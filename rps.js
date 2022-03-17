@@ -1,34 +1,73 @@
+let playerScore = 0;
+let cpuScore = 0;
+let result = "";
+
 function computerPlay() {
     let possibleMoves = ["rock", "paper", "scissors"];
     return possibleMoves[Math.floor(Math.random()*possibleMoves.length)]
 }
 
-const computerSelection = computerPlay();
-let choice = prompt("Rock, paper, or scissors?", "rock");
-const playerSelection = choice.toLowerCase();
-
-function playRound(playerOne, playerTwo) {
-    if(playerOne === playerTwo) {
-        console.log("Draw!");
+function playRound(computerSelection, playerSelection) {
+    if(computerSelection === playerSelection) {
+        result = "draw";
     } 
-    else if(playerOne === "rock" && playerTwo === "scissors") {
-        console.log("CPU chooses rock. You lose!");
+    else if(computerSelection === "rock" && playerSelection === "scissors") {
+       result = "cpu";
     }
-    else if(playerOne === "rock" && playerTwo === "paper") {
-        console.log("CPU chooses rock. You win!");
+    else if(computerSelection === "rock" && playerSelection === "paper") {
+        result = "player";
     }
-    else if(playerOne === "paper" && playerTwo === "rock") {
-        console.log("CPU chooses paper. You lose!");
+    else if(computerSelection === "paper" && playerSelection === "rock") {
+        result = "cpu";
     }
-    else if(playerOne === "paper" && playerTwo === "scissors") {
-        console.log("CPU chooses paper. You win!");
+    else if(computerSelection === "paper" && playerSelection === "scissors") {
+        result = "player";
     }
-    else if(playerOne === "scissors" && playerTwo === "paper") {
-        console.log("CPU chooses scissors. You lose!");
+    else if(computerSelection === "scissors" && playerSelection === "paper") {
+        result = "cpu";
     }
-    else if(playerOne === "scissors" && playerTwo === "rock") {
-        console.log("CPU chooses scissors. You win");
+    else if(computerSelection === "scissors" && playerSelection === "rock") {
+        result = "player";
+    }
+
+    return result;
+}
+
+function roundWinner() {
+    if(result === "draw") {
+        console.log("Round is a draw!");
+    }
+    else if (result === "player") {
+        console.log("You win this round!");
+        playerScore++;
+    }
+    else {
+        console.log("CPU wins this round!");
+        cpuScore++;
     }
 }
 
-console.log(playRound(computerSelection, playerSelection));
+function gameWinner() {
+    if(playerScore === cpuScore) {
+        console.log("Tied " + playerScore + " to " + cpuScore + "!");
+    }
+    else if(playerScore > cpuScore) {
+        console.log("Player wins " + playerScore + " rounds to " + cpuScore + "!");
+    }
+    else { console.log("CPU wins " + cpuScore + " to " + playerScore + "!"); }
+}
+
+function game() {
+    for(let rounds = 0; rounds < 5; rounds++) {
+        const computerSelection = computerPlay();
+        let choice = prompt("Rock, paper, or scissors?", "rock");
+        const playerSelection = choice.toLowerCase();
+    
+        playRound(computerSelection, playerSelection);
+        roundWinner();
+    }
+    
+    gameWinner();
+}
+
+game();
