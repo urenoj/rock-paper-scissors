@@ -1,11 +1,29 @@
 let playerScore = 0;
 let cpuScore = 0;
-let result = "";
+let result;
+
+const options = document.querySelectorAll('.options');
+
+const resultDiv = document.querySelector('#result');
+const playerDiv = document.querySelector('#playerScore');
+const cpuDiv = document.querySelector('#cpuScore');
 
 function computerPlay() {
     let possibleMoves = ["rock", "paper", "scissors"];
     return possibleMoves[Math.floor(Math.random()*possibleMoves.length)]
 }
+
+options.forEach((option) => {
+    option.addEventListener('click', () => {
+        let clicked = option.textContent;
+        let playerChoice = clicked.toLowerCase();
+        let cpuChoice = computerPlay();
+
+        playRound(playerChoice, cpuChoice);
+        roundWinner();
+        gameWinner();
+    });
+});
 
 function playRound(computerSelection, playerSelection) {
     if(computerSelection === playerSelection) {
@@ -35,39 +53,25 @@ function playRound(computerSelection, playerSelection) {
 
 function roundWinner() {
     if(result === "draw") {
-        console.log("Round is a draw!");
+        resultDiv.textContent = "Round was a draw! No points given.";
     }
     else if (result === "player") {
-        console.log("You win this round!");
+        resultDiv.textContent = "You win this round!";
         playerScore++;
+        playerDiv.textContent = playerScore;
     }
     else {
-        console.log("CPU wins this round!");
+        resultDiv.textContent = "CPU wins this round!";
         cpuScore++;
+        cpuDiv.textContent =  cpuScore;
     }
 }
 
 function gameWinner() {
-    if(playerScore === cpuScore) {
-        console.log("Tied " + playerScore + " to " + cpuScore + "!");
+    if(playerScore === 5) {
+        resultDiv.textContent = "First to five. You win!";
     }
-    else if(playerScore > cpuScore) {
-        console.log("Player wins " + playerScore + " rounds to " + cpuScore + "!");
+    else if(cpuScore === 5) {
+        resultDiv.textContent = "CPU was first to five. You lose! :(";
     }
-    else { console.log("CPU wins " + cpuScore + " to " + playerScore + "!"); }
 }
-
-function game() {
-    for(let rounds = 0; rounds < 5; rounds++) {
-        const computerSelection = computerPlay();
-        let choice = prompt("Rock, paper, or scissors?", "rock");
-        const playerSelection = choice.toLowerCase();
-    
-        playRound(computerSelection, playerSelection);
-        roundWinner();
-    }
-    
-    gameWinner();
-}
-
-game();
