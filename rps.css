@@ -1,0 +1,43 @@
+body {
+    background-color: bisque;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 48px;
+    color:darkslategray;
+    margin-top: 48px;
+}
+
+span {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+button {
+    font-size: 24px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    background-color: darkslategray;
+    color: bisque;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 32px;
+    color: darkslategray;
+}
+
+#result {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 32px;
+    color: darkslategray;
+}
