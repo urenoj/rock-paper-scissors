@@ -5,8 +5,8 @@ let result;
 const options = document.querySelectorAll('.options');
 
 const resultDiv = document.querySelector('#result');
-const playerDiv = document.querySelector('#playerScore');
-const cpuDiv = document.querySelector('#cpuScore');
+const playerSpan = document.querySelector('#playerScore');
+const cpuSpan = document.querySelector('#cpuScore');
 
 function computerPlay() {
     let possibleMoves = ["rock", "paper", "scissors"];
@@ -58,20 +58,29 @@ function roundWinner() {
     else if (result === "player") {
         resultDiv.textContent = "You win this round!";
         playerScore++;
-        playerDiv.textContent = playerScore;
+        playerSpan.textContent = playerScore;
     }
     else {
         resultDiv.textContent = "CPU wins this round!";
         cpuScore++;
-        cpuDiv.textContent =  cpuScore;
+        cpuSpan.textContent =  cpuScore;
     }
 }
 
 function gameWinner() {
     if(playerScore === 5) {
         resultDiv.textContent = "First to five. You win!";
+        resetGame();
     }
     else if(cpuScore === 5) {
         resultDiv.textContent = "CPU was first to five. You lose! :(";
+        resetGame();
     }
+}
+
+function resetGame() {
+    playerScore = 0;
+    cpuScore = 0;
+    playerSpan.textContent = 0;
+    cpuSpan.textContent = 0;
 }
