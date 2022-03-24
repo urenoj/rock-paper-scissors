@@ -3,15 +3,18 @@
     <head>
         <title>Rock, Paper, Scissors</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="rps.css">
     </head>
 
     <body>
         <h1>A game of Rock, Paper, Scissors up to 5 points</h1>
+        <span>
         <button type="button" class="options">Rock</button>
         <button type="button" class="options">Paper</button>
         <button type="button" class="options">Scissors</button>
-        <div id="playerDiv">Player Score: <span id="playerScore">0</span></div>
-        <div id="cpuDiv">CPU Score: <span id="cpuScore">0</span></div>
+        </span>
+        <div class="score">Player Score: <span id="playerScore">0</span></div>
+        <div class="score">CPU Score: <span id="cpuScore">0</span></div>
         <div id="result"></div>
         
         <script src="rps.js"></script>
